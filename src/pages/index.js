@@ -1,11 +1,44 @@
-import { Inter } from 'next/font/google'
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
+import styles from '@/styles/home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export async function getStaticProps() {
+
+  const maxPkemons = 251;
+  const api = 'https://pokeapi.co/api/v2/pokemon/';
+  const res = await fetch(`${api}/?limit=${maxPkemons}`);
+  const data = await res.json();
+
+  data.results.forEach((pokemon, index) => pokemon.id = index+1);
+
+  return {
+    props:{
+      pokemons: data.results
+    }
+  }
+}
+
+export default function Home({pokemons}) {
+
+  function renderPokemons(pokemons) {
+    return pokemons.map((pokemon) => {
+      return (
+        <li key={pokemon.id}>{pokemon.name}</li>
+      )
+    })
+  }
   return (
     <>
-      <h1>Pokenext a b c d e f g h i j k l m n o p q r s t u v x z</h1>
+      <div className={styles.title_container}>
+        <h1 className={styles.title}>Poke<span>next</span></h1>
+        <Image src="/images/pokeball.png" width="83" height="71" alt="pokeball"/>
+      </div>
+
+      <div className={styles.pokemon_container}>
+        {renderPokemons(pokemons)}
+      </div>
     </>
   )
 }
