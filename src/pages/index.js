@@ -14,22 +14,49 @@ function zeroPad(num,count)
   return numZeropad;
 }
 
+const pokemonGraphql = (limit) => {
+  const uri = "https://beta.pokeapi.co/graphql/v1beta";
+  const query = {
+    query: `{
+      pokemon_v2_pokemon(order_by: {id: asc}, limit: ${limit}) {
+        name
+        pokemon_v2_pokemontypes {
+          pokemon_v2_type {
+            name
+          }
+        }
+        id
+      }
+    }`
+  };
+  const headers = {
+    'Content-Type': 'application/json'
+  }
+
+  return fetch(uri, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(query)
+  });
+}
+
 export async function getStaticProps() {
 
   const maxPkemons = 151;
-  const api = 'https://pokeapi.co/api/v2/pokemon/';
-  const res = await fetch(`${api}/?limit=${maxPkemons}`);
-  const data = await res.json();
+  const res = await pokemonGraphql(maxPkemons);
+  const {data} = await res.json();
 
-  data.results.forEach((pokemon, index) => {
-    const id = index+1;
-    pokemon.id = id;
-    pokemon.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${zeroPad(id, 3)}.png`
+  const pokemons = data.pokemon_v2_pokemon.map((pokemon) => {
+    const id = pokemon.id;
+    pokemon.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${zeroPad(id, 3)}.png`;
+    pokemon.types = pokemon.pokemon_v2_pokemontypes;
+    delete pokemon.pokemon_v2_pokemontypes;
+    return pokemon;
   });
 
   return {
     props:{
-      pokemons: data.results
+      pokemons: pokemons
     }
   }
 }
@@ -39,11 +66,12 @@ export default function Home({pokemons}) {
   function renderPokemons(pokemons) {
     return pokemons.map((pokemon) => {
       return (
-        <Card 
+        <Card
           key={pokemon.id} 
           nome={pokemon.name}
           image={pokemon.image}
           numero={pokemon.id}
+          types={pokemon.types}
         />
       )
     })

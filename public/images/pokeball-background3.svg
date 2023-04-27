@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="500.000000pt"
+   height="500.000000pt"
+   viewBox="0 0 500.000000 500.000000"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg10"
+   sodipodi:docname="pokeball.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="pt"
+     showgrid="false"
+     inkscape:zoom="0.88352992"
+     inkscape:cx="236.55113"
+     inkscape:cy="205.99189"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="1920"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <g
+     transform="matrix(0.1,0,0,-0.1,-874.79628,-273.20541)"
+     fill="#000000"
+     stroke="none"
+     id="g8">
+    <path
+       d="m 11123.932,-3021.164 c -906,-69 -1667.0001,-702 -1904.0001,-1581 -23,-86 -44,-196 -61,-321 l -6,-48 h 543 543.0001 l 22,86 c 58,224 199,434 385,574 318,240 728,284 1084,116 50,-24 120,-63 155,-86 81,-54 212,-186 268,-269 62,-91 129,-238 153,-336 l 21,-85 h 544 544 l -6,48 c -38,279 -98,487 -204,706 -309,637 -932,1089 -1626,1180 -146,20 -326,26 -455,16 z"
+       id="path2"
+       style="fill:#e21a22;fill-opacity:1" />
+    <path
+       d="m 11138.932,-4465.164 c -142,-34 -251,-93 -349,-192 -234,-233 -273,-605 -92,-877 88,-132 222,-235 373,-285 67,-22 96,-26 208,-26 109,-1 142,3 205,22 288,90 483,339 497,637 16,321 -180,604 -484,702 -97,31 -266,40 -358,19 z"
+       id="path4" />
+    <path
+       d="m 9158.9319,-5378.164 c 16,-121 47,-277 70,-358 235,-814 923.0001,-1412 1761.0001,-1531 156,-22 440,-22 589,0 619,92 1144,424 1486,940 189,284 293,571 344,949 l 6,47 h -544 -545 l -7,-37 c -3,-21 -18,-72 -31,-113 -178,-535 -739,-837 -1284,-689 -92,25 -235,92 -321,149 -82,56 -213,187 -269,269 -62,92 -128,238 -152,336 l -21,85 h -544.0001 -544 z"
+       id="path6"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>

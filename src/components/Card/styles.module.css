@@ -1,46 +1,392 @@
 .card {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+}
+
+.card:hover .background_pokeball {
+  box-shadow: 0px 5px 26px -5px rgba(107, 129, 148, 0.5);
+}
+.card:hover .poke_info {
+  box-shadow: 0px 5px 26px -5px rgba(107, 129, 148, 0.5);
+
+}
+
+.poke_container {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.background_pokeball {
+  background-color: #FFF;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+
+}
+
+.pokeball_image {
+  background-image: url(/images/pokeball-background.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 10%;
+}
+
+.poke_image {
+  position: absolute;
+  z-index: 999;
+}
+
+.poke_info {
+  flex: 1;
+  padding: 10px 20px;
+  background-color: #333;
+  position: relative;
+  width: 290px;
+  height: 130px;
+  border-radius: 1rem;
+  right: 50px;
+  color: #FFF;
+}
+
+.poke_type {
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: capitalize;
+  display: flex;
+  gap: 20px;
+}
+
+.poke_icon {
+  position: absolute;
+  top: 2.5em;
+  left: -0.2em;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  background: #eee;
+  transform: translateX(25%);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+.poke_info_container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 2em 1em;
-    margin-bottom: 2em;
-    width: 23%;
-    border-radius: 1em;
-    border: 2px solid #e33d33;
-    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .card .id {
-    margin: 1em 0;
-    background-color: #e33d33;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    display: flex;
     justify-content: center;
-    align-items: center;
-  }
-  
-  .card .title {
-    text-transform: capitalize;
-    margin-bottom: 1em;
-    font-size: 1.4em;
-  }
-  
-  .card .btn {
-    text-decoration: none;
-    background-color: #fff;
-    color: #222;
-    padding: 0.7em 1.2em;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.4s;
-  }
-  
-  .card .btn:hover {
-    background-color: #e33d33;
-    color: #fff;
-  }
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.poke_id {
+  font-size: 0.9em;
+}
+
+.poke_name {
+  text-transform: capitalize;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.text_normal {
+  background-color: #A8A77A;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_fire {
+  background-color: #EE8130;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_water {
+  background-color: #6390F0;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_electric {
+  background-color: #F7D02C;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_grass {
+  background-color: #7AC74C;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_ice {
+  background-color: #96D9D6;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_fighting {
+  background-color: #C22E28;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_poison {
+  background-color: #A33EA1;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_ground {
+  background-color: #E2BF65;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_flying {
+  background-color: #A98FF3;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_psychic {
+  background-color: #F95587;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_bug {
+  background-color: #A6B91A;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_rock {
+  background-color: #B6A136;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_ghost {
+  background-color: #735797;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_dragon {
+  background-color: #6F35FC;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_dark {
+  background-color: #705746;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_steel {
+  background-color: #B7B7CE;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
+
+.text_fairy {
+  background-color: #D685AD;
+  color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+
+  position: relative;
+  width: auto;
+  height: 18px;
+  border-radius: 10px;
+}
