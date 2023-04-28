@@ -5,7 +5,9 @@ import styles from './navbar.module.css';
 
 const RedirectTo = ({children, href}) => {
     const router = useRouter()
-    const style =  router.asPath === href ? styles.active : styles.inactive;
+    const activeRoute = router.asPath.split('/')[1]
+    const hrefSplit = href.split('/')[1]
+    const style = activeRoute === hrefSplit ? styles.active : styles.inactive;
 
     const handleClick = (e) => {
         e.preventDefault()

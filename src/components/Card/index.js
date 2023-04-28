@@ -6,7 +6,7 @@ import { zeroPad } from '@/utils/formaters';
 import styles from './styles.module.css';
 export default function Card({ nome, image, numero, types }) {
     function renderTypes(types) {
-        return types.map(type => (<div className={styles[`text_${type.pokemon_v2_type.name}`]}>{type.pokemon_v2_type.name}</div>))
+        return types.map(type => (<div className={`${styles.type} ${styles[`text_${type.pokemon_v2_type.name}`]}`}>{type.pokemon_v2_type.name}</div>))
     }
 
     function renderImageIcon(types) {
@@ -15,7 +15,7 @@ export default function Card({ nome, image, numero, types }) {
     }
 
     return (
-        <Link className={styles.btn} href={`/pokemon/${numero}`}>
+        <Link className={styles.btn} href={`/pokedex/${numero}`}>
 
             <div className={styles.card}>
                 <div className={styles.poke_container}>
