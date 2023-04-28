@@ -1,25 +1,35 @@
-.title_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2em;
-  }
+.container {
+  display: flex;
+}
+.container .text_container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 2
+}
 
-  .title {
-    color: #e33d33;
-    text-align: center;
-    font-size: 3em;
-    margin-right: 0.4em;
-  }
+.container .text_container h1 {
+  font-size: 2rem;
+}
 
-  .title span {
-    color: #000;
-  }
+.button {
+  background-color: #98C26E;
+  padding: 10px;
+  border-radius: 0.5rem;
+  max-width: 300px;
+  color:#f9f9f9;
+  text-align: center;
+}
+.button:hover {
+  background-color: hsl(90, 31%, 50%);
 
-  .pokemon_container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+}
+
+.container .image_container {}
+
+@media (max-width: 700px)
+{
+  .container {
+    flex-direction: column;
   }
+}

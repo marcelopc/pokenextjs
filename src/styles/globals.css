@@ -7,8 +7,15 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
+    color: #333;
+
+}
+body {
+    background-color: #f9f9f9;
 }
 
 .main-container {
     min-height: 70vh;
+    background-color: #f9f9f9;
+    padding: 0 5em;
 }

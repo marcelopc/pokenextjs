@@ -1,91 +1,25 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
+import Image from 'next/image'
+import Link from 'next/link';
 import styles from '@/styles/home.module.css'
-import Card from '@/components/Card';
 
-const inter = Inter({ subsets: ['latin'] })
+export default function Home() {
 
-function zeroPad(num,count)
-{
-  var numZeropad = num + '';
-  while(numZeropad.length < count) {
-    numZeropad = "0" + numZeropad;
-  }
-  return numZeropad;
-}
-
-const pokemonGraphql = (limit) => {
-  const uri = "https://beta.pokeapi.co/graphql/v1beta";
-  const query = {
-    query: `{
-      pokemon_v2_pokemon(order_by: {id: asc}, limit: ${limit}) {
-        name
-        pokemon_v2_pokemontypes {
-          pokemon_v2_type {
-            name
-          }
-        }
-        id
-      }
-    }`
-  };
-  const headers = {
-    'Content-Type': 'application/json'
-  }
-
-  return fetch(uri, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(query)
-  });
-}
-
-export async function getStaticProps() {
-
-  const maxPkemons = 151;
-  const res = await pokemonGraphql(maxPkemons);
-  const {data} = await res.json();
-
-  const pokemons = data.pokemon_v2_pokemon.map((pokemon) => {
-    const id = pokemon.id;
-    pokemon.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${zeroPad(id, 3)}.png`;
-    pokemon.types = pokemon.pokemon_v2_pokemontypes;
-    delete pokemon.pokemon_v2_pokemontypes;
-    return pokemon;
-  });
-
-  return {
-    props:{
-      pokemons: pokemons
-    }
-  }
-}
-
-export default function Home({pokemons}) {
-
-  function renderPokemons(pokemons) {
-    return pokemons.map((pokemon) => {
-      return (
-        <Card
-          key={pokemon.id} 
-          nome={pokemon.name}
-          image={pokemon.image}
-          numero={pokemon.id}
-          types={pokemon.types}
-        />
-      )
-    })
-  }
   return (
-    <>
-      <div className={styles.title_container}>
-        <h1 className={styles.title}>Poke<span>next</span></h1>
-        <Image src="/images/pokeball.png" width="83" height="71" alt="pokeball"/>
+    <div className={styles.container}>
+      <div className={styles.text_container}>
+        <h1>A Enciclopédia definitiva de Pokémons</h1>
+        <h3>Descubra tudo sobre seus Pokémons favoritos e se torne um verdadeiro Mestre Pokémon!</h3>
+        <h3>Comece a explorar agora!</h3>
+        <Link href="/pokedex" className={styles.button}>Começar</Link>
       </div>
-
-      <div className={styles.pokemon_container}>
-        {renderPokemons(pokemons)}
+      <div className={styles.image_container}>
+        <Image
+          src="/images/dragonite.png"
+          alt="Dragonite"
+          width={500}
+          height={500}
+        />
       </div>
-    </>
+    </div>
   )
 }

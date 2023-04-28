@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     return (
         <>
             <Head>
-                <title>PokeNext</title>
+                <title>Pokemonzone</title>
                 <link rel="icon" href="/images/favicon.ico" />
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>

@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  
+  background-color: #f9f9f9;
 }
 
 .card:hover .background_pokeball {
