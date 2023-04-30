@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Tipos } from '../Tipos'
 
 import { zeroPad } from '@/utils/formaters';
 
@@ -11,7 +12,7 @@ export default function Card({ nome, image, numero, types }) {
 
     function renderImageIcon(types) {
         const tipo = types[0].pokemon_v2_type.name;
-        return (<Image src={`https://kai-tw.github.io/PokeCard/icons/${tipo}.png`} width={100} height={100} alt={nome} />)
+        return (<Tipos tipo={tipo} />)
     }
 
     return (
