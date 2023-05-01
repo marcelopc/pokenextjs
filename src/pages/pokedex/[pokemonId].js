@@ -31,6 +31,37 @@ export const getStaticProps = async (context) => {
     const data = await res.json();
     data.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${zeroPad(id, 3)}.png`;
 
+// query para buscar o pokemon com os dados corretos
+    // {
+    //     pokemon_v2_pokemon(where: {id: {_eq: 1}}) {
+    //       name
+    //       id
+    //       height
+    //       weight
+    //       pokemon_v2_pokemontypes {
+    //         pokemon_v2_type {
+    //           name
+    //         }
+    //       }
+    //       pokemon_v2_pokemonstats {
+    //         base_stat
+    //         pokemon_v2_stat {
+    //           name
+    //         }
+    //       }
+    //     }
+    //     pokemon_v2_pokemonevolution(where: {id: {_eq: 1}}) {
+    //       min_level
+    //     }
+    //     pokemon_v2_pokemonspeciesflavortext(where: {id: {_eq: 1}}) {
+    //       flavor_text
+    //     }
+    //   }
+      
+
+
+
+
     const { data: sidebarData } = await getPokemonSideBar(id)
 
     return { props: { pokemon: data, sidebarData } };
