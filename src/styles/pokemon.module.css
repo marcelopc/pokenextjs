@@ -162,7 +162,9 @@
     box-sizing: border-box;
     color: #f9f9f9;
     text-align: initial;
-
+    border-radius: 10px;
+    width: 300px;
+    
 }
 
 .stats_container > div > h1{

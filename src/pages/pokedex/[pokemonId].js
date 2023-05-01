@@ -3,7 +3,8 @@ import styles from '@/styles/pokemon.module.css';
 import { StatsBars } from '@/components/StatsBar';
 import { zeroPad } from '@/utils/formaters';
 import { SideBarElement } from '@/components/SideBarElement';
-import getPokemonSideBar from '../api/pokemon';
+import {getPokemonSideBar, getPokemon} from '../api/pokemon';
+import Link from 'next/link';
 
 export const getStaticPaths = async () => {
 
@@ -26,45 +27,18 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
     const id = context.params.pokemonId;
 
-    const api = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    const res = await fetch(`${api}`);
-    const data = await res.json();
-    data.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${zeroPad(id, 3)}.png`;
-
-// query para buscar o pokemon com os dados corretos
-    // {
-    //     pokemon_v2_pokemon(where: {id: {_eq: 1}}) {
-    //       name
-    //       id
-    //       height
-    //       weight
-    //       pokemon_v2_pokemontypes {
-    //         pokemon_v2_type {
-    //           name
-    //         }
-    //       }
-    //       pokemon_v2_pokemonstats {
-    //         base_stat
-    //         pokemon_v2_stat {
-    //           name
-    //         }
-    //       }
-    //     }
-    //     pokemon_v2_pokemonevolution(where: {id: {_eq: 1}}) {
-    //       min_level
-    //     }
-    //     pokemon_v2_pokemonspeciesflavortext(where: {id: {_eq: 1}}) {
-    //       flavor_text
-    //     }
-    //   }
-      
-
-
-
+    const {data} = await getPokemon(id);
+    const [pokemon] = data.pokemon_v2_pokemon;
+    const [evolution] = data.pokemon_v2_pokemonevolution;
+    const [sumario] = data.pokemon_v2_pokemonspeciesflavortext;
+    const paylaod = {...pokemon};
+    paylaod.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${zeroPad(id, 3)}.png`;
+    paylaod.evolution = evolution;
+    paylaod.sumario = sumario;
 
     const { data: sidebarData } = await getPokemonSideBar(id)
 
-    return { props: { pokemon: data, sidebarData } };
+    return { props: { pokemon: paylaod, sidebarData } };
 };
 
 
@@ -75,7 +49,7 @@ export default function Pokemons({ pokemon, sidebarData }) {
 
         const status = stats.map((stat, index) => (<StatsBars
             key={index}
-            stats={stat.stat.name}
+            stats={stat.pokemon_v2_stat.name}
             min={stat.base_stat}
             max={max}
         />));
@@ -111,7 +85,15 @@ export default function Pokemons({ pokemon, sidebarData }) {
         });
 
     }
-
+    function renderPrevNext(pokemonId, list){
+        const next = list.pokemon_v2_pokemon.find(item => item.id === pokemonId + 1);
+        const prev = list.pokemon_v2_pokemon.find(item => item.id === pokemonId - 1);
+        
+        return(<>
+            <Link href={`/pokedex/${prev.id}`}>{prev.name}</Link>
+            <Link href={`/pokedex/${next.id}`}>{next.name}</Link>
+        </>);
+    }
     return (
         <div className={styles.pokemon_container}>
             <div className={styles.sidebar}>
@@ -119,8 +101,7 @@ export default function Pokemons({ pokemon, sidebarData }) {
             </div>
             <div className={styles.data_content}>
                 <div className={styles.navigation}>
-                    <div>previous</div>
-                    <div>next</div>
+                    {renderPrevNext(pokemon.id, sidebarData)}
                 </div>
                 <div className={styles.pokemon_details_container}>
                     <div>
@@ -128,47 +109,19 @@ export default function Pokemons({ pokemon, sidebarData }) {
                         <div>
                             <h1 className={styles.title}>{zeroPad(pokemon.id, 3)} {captalize(pokemon.name)}</h1>
                             <p>
-                                Tipo: {pokemon.types.map((item, index) => (<span key={index} className={`${styles.type} ${styles['type_' + item.type.name]}`}>{captalize(item.type.name)}</span>))}
+                                Tipo: {pokemon.pokemon_v2_pokemontypes.map((item, index) => (<span key={index} className={`${styles.type} ${styles['type_' + item.pokemon_v2_type.name]}`}>{captalize(item.pokemon_v2_type.name)}</span>))}
                             </p>
                             <p>Altura: <span>{pokemon.height * 10} cm</span></p>
                             <p>Peso: <span>{pokemon.weight / 10} kg</span></p>
-                            <p>Evolui: <span></span></p>
-                            <p>Sumario: <span></span></p>
+                            <p>Evolui: Level {pokemon.evolution.min_level}<span></span></p>
+                            <p>Sumario: {pokemon.sumario.flavor_text}<span></span></p>
                         </div>
                     </div>
                     <div className={styles.stats_container}>
-                        {renderStat(pokemon.stats)}
+                        {renderStat(pokemon.pokemon_v2_pokemonstats)}
                     </div>
                 </div>
             </div>
-
-
-            {/* <h1 className={styles.title}>{pokemon.name}</h1>
-            <Image src={pokemon.image} width={300} height={300} alt={pokemon.name} />
-            <div className={styles.number_container}>
-                <h3>Numero:</h3>
-                <p>#{pokemon.id}</p>
-            </div>
-            <div>
-                <h3>Tipo:</h3>
-                <div className={styles.types_container}>
-                    {pokemon.types.map((item, index) => (<span key={index} className={`${styles.type} ${styles['type_' + item.type.name]}`}>{item.type.name}</span>))}
-                </div>
-            </div>
-            <div className={styles.data_container}>
-                <div className={styles.data_height}>
-                    <h4>Altura:</h4>
-                    <p>{pokemon.height * 10} cm</p>
-                </div>
-                <div className={styles.data_weight}>
-                    <h4>Peso:</h4>
-                    <p>{pokemon.weight / 10} kg</p>
-                </div>
-
-            </div>
-            <div className={styles.stats_container}>
-                {renderStat(pokemon.stats)}
-            </div> */}
         </div>
     )
 
