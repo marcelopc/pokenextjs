@@ -18,6 +18,8 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 .pokemon_details_container {
     display: flex;
@@ -164,7 +166,7 @@
     text-align: initial;
     border-radius: 10px;
     width: 300px;
-    
+
 }
 
 .stats_container > div > h1{
